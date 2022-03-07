@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Home from './HomeComponent';
-import Directory from './DirectoryComponent';
-import CampsiteInfo from './CampsiteInfoComponent';
-import Constants from 'expo-constants';
 import About from './AboutComponent';
 import Contact from './ContactComponent';
+import Home from './HomeComponent';
+import Directory from './DirectoryComponent';
+import CampsiteInfo from './CampsiteInfoComponent'
+import Constants from 'expo-constants';
 import { View, Platform, StyleSheet, Text, ScrollView, Image } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
@@ -21,7 +21,6 @@ const mapDispatchToProps = {
     fetchPromotions,
     fetchPartners
 };
-    
 
 const ContactNavigator = createStackNavigator(
     {
@@ -221,7 +220,7 @@ class Main extends Component {
         return (
             <View style={{
                 flex: 1,
-                paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight
+                paddingTop: Platform.OS === 'ios' ? 0 : Expo.Constants.statusBarHeight
             }}>
                 <AppNavigator />
             </View>
