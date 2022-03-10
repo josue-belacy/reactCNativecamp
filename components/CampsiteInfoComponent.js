@@ -4,18 +4,23 @@ import { Card, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import { postFavorite } from '../redux/ActionCreators';
+import { postComment } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
-  return {
-    campsites: state.campsites,
-    comments: state.comments,
-    favorites: state.favorites
-  }
-}
+    return {
+        campsites: state.campsites,
+        comments: state.comments,
+        favorites: state.favorites,
+        showModal: false
+    };
+};
 
-// const mapDispatchToProps = {
-//     postFavorite: campsiteId => (postFavorite(campsiteId))
-// };
+
+
+const mapDispatchToProps = {
+    postFavorite: campsiteId => (postFavorite(campsiteId)),
+    postComment: (campsiteId, rating, author, text) => (postComment(campsiteId, rating, author, text))
+};
 
 function RenderCampsite(props) {
 
