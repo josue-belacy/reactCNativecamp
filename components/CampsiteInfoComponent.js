@@ -15,8 +15,6 @@ const mapStateToProps = state => {
     };
 };
 
-
-
 const mapDispatchToProps = {
     postFavorite: campsiteId => (postFavorite(campsiteId)),
     postComment: (campsiteId, rating, author, text) => (postComment(campsiteId, rating, author, text))
@@ -71,8 +69,6 @@ function RenderComments({comments}) {
         </Card>
     );
 }
-
-
 class CampsiteInfo extends Component {
 
     markFavorite(campsiteId) {
