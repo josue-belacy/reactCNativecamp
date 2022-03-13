@@ -37,7 +37,7 @@ export const fetchCampsites = () => dispatch => {
 
     return fetch(baseUrl + 'campsites')
         .then(response => {
-                if (response.ok) {
+             if (response.ok) {
                     return response;
                 } else {
                     const error = new Error(`Error ${response.status}: ${response.statusText}`);
@@ -151,4 +151,25 @@ export const postFavorite = campsiteId => dispatch => {
 export const addFavorite = campsiteId => ({
     type: ActionTypes.ADD_FAVORITE,
     payload: campsiteId
+});
+
+export const postComment = (campsiteId, rating, author, text) => dispatch => {
+    const newComment = {
+        campsiteId,
+        rating,
+        author,
+        text
+    }
+    
+    const date = new Date();
+    let text = d.to.ISOString()
+
+    setTimeout(() => {
+        dispatch(addComment(newComment));
+    }, 2000);
+}
+
+export const addComment = comment => ({
+    type: ActionTypes.ADD_COMMENT,
+    payload: comment
 });
