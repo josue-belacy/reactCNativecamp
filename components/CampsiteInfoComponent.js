@@ -98,10 +98,19 @@ class CampsiteInfo extends Component {
         this.setState({ showModal: !this.state.showModal })
     }
 
-    handleComment(campsiteId, rating, author, text) {
-        postComment(campsiteId, rating, author, text)
-        this.toggleModal();
-    }
+    // handleComment(campsiteId, rating, author, text) {
+    //     postComment(campsiteId, rating, author, text)
+    //     this.toggleModal();
+    // }
+
+    handleComment(campsiteId) {
+        this.props.postComment(
+          campsiteId,
+          this.state.rating,
+          this.state.author,
+          this.state.text
+        );
+      }
 
     resetForm() {
         this.setState({
