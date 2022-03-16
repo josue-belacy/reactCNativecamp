@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, StyleSheet,
-    Picker, Switch, Button, Modal } from 'react-native';
+    Picker, Switch, Button, Alert } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Animatable from 'react-native-animatable';
 
@@ -22,24 +22,37 @@ class Reservation extends Component {
         title: 'Reserve Campsite'
     }
 
-toggleModal() {
-    this.state({showModal: !this.state.showModal});
-}
-
 handleReservation() {
     console.log(JSON.stringify(this.state));
     this.toggleModal();
 }
 
     handleReservation() {
-        console.log(JSON.stringify(this.state));
-        this.setState({
-            campers: 1,
-            hikeIn: false,
-            date: new Date(),
-            showCalendar: false     
-        });
-    }
+    Alert.alert (
+        'Begin Search?',
+        'Number of Campers: ' + this.state.campers + "\n\n" +
+        'Hike-In? ' + this.state.hikeIn + "\n\n" +
+        'Date: '+ this.state.date.toLocaleDateString('en-US'),
+    [
+        {
+            text: 'Cancel',
+            onPress: () => {
+                console.log('Reservation Search Canceled');
+                this.resetForm();
+            },
+            style: 'cancel'
+        },
+        {
+            text:'OK',
+            onPress: () => {
+                this.presentLocaleNotification(this.state.date.toLocaleDateString('en-US'));
+                this.resetForm();
+            }
+        }
+    ]
+    { cancelable: false }
+);
+}
 
     resetForm() {
         this.setState({
