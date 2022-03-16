@@ -30,7 +30,7 @@ class Favorites extends Component {
         const { navigate } = this.props.navigation;
         const renderFavoriteItem = ({item}) => {
             return (
-                <SwipeRow rightOpenValue={0100} style={styles.swipeRow}>
+                <SwipeRow rightOpenValue={-100} style={styles.swipeRow}>
                     <View style={styles.deleteView}>
                         <TouchableOpacity
                           style={styles.deleteTouchable}

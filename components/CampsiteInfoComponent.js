@@ -4,7 +4,7 @@ import { Card, Icon, Rating, Input } from 'react-native-elements';
 import { connect } from 'react-redux'
 import { baseUrl } from '../shared/baseUrl';
 import { postFavorite, postComment } from '../redux/ActionCreators';
-import * as Animatable from 'react-native-animatable';
+import * as Animatable from 'react-native-animatable'
 
 const mapStateToProps = (state) => {
     return {
@@ -15,8 +15,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-    postFavorite: (campsiteId) => postFavorite(campsiteId),
-    postComment: (campsiteId, rating, author, text) => postComment(campsiteId)
+    postFavorite,
+    postComment,
 };
 
 function RenderCampsite(props) {
@@ -26,6 +26,8 @@ function RenderCampsite(props) {
     const View = React.createRef();
 
     const recognizeDrag = ({dx}) => (dx < -200) ? true : false;
+    
+    const renderComment = ({dx}) => (dx > 200) ? true : false;
 
     const panResponder = PanResponder.create({
         onStartShouldSetPanResponder: () => true,
@@ -54,9 +56,21 @@ function RenderCampsite(props) {
                     { cancelable: false }
                 );
             }
+            else if (recognizeComment(gestureState)) {
+                props.onShowModal()
+            }
             return true;
         }
-    });    
+    });
+    const shareCampsite = (title, message, url) => {
+        Share.share({
+            title: title,
+            message: `${title}: ${message} ${url}`,
+            url: url
+        },{
+            dialogTitle: 'Share' + title
+        });
+    };  
 
     if (campsite) {
         return (
@@ -79,15 +93,14 @@ function RenderCampsite(props) {
                             color='#f50'
                             raised
                             reverse
-                            onPress={() => props.favorite ? console.log('already favorite') : props.markFavorite()}
                         />
                         <Icon
+                            onPress={() => props.favorite ? console.log('already favorite') : props.markFavorite()}
                             name='pencil'
                             type='font-awesome'
                             color='#5637DD'
                             raised
                             reverse
-                            onPress={() => props.onShowModal()}
                         />
                     </View>
                 </Card>

@@ -49,7 +49,7 @@ handleReservation() {
                 this.resetForm();
             }
         }
-    ]
+    ],
     { cancelable: false }
 );
 }
