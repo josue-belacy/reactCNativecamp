@@ -338,6 +338,6 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
   },
-});
+})
 
 export default Login;
